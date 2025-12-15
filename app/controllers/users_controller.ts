@@ -18,7 +18,7 @@ export default class UsersController {
 
       if (search) {
         query.where((builder) => {
-          builder.where('email', 'like', `%${search}%`).orWhere('fullname', 'like', `%${search}%`)
+          builder.where('email', 'like', `%${search}%`).orWhere('full_name', 'like', `%${search}%`)
         })
       }
 
