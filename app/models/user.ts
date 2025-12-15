@@ -1,29 +1,17 @@
 import { DateTime } from 'luxon'
-import hash from '@adonisjs/core/services/hash'
-import { compose } from '@adonisjs/core/helpers'
 import { BaseModel, column } from '@adonisjs/lucid/orm'
-import { withAuthFinder } from '@adonisjs/auth/mixins/lucid'
 
-// Compose the model with authentication functionality
-const AuthFinder = withAuthFinder(() => hash.use('scrypt'), {
-  uids: ['email'],
-  passwordColumnName: 'password',
-})
-
-export default class User extends compose(BaseModel, AuthFinder) {
-  // Primary key
+export default class User extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
 
-  // Authentication fields
   @column()
   declare email: string
 
-  @column({ serializeAs: null }) // Don't include password in JSON responses
+  @column()
   declare password: string
 
-  // Profile information
-  @column()
+  @column({ columnName: 'full_name' })
   declare fullName: string
 
   @column()
@@ -32,20 +20,18 @@ export default class User extends compose(BaseModel, AuthFinder) {
   @column()
   declare address: string | null
 
-  @column.date()
+  @column.date({ columnName: 'date_of_birth' })
   declare dateOfBirth: DateTime | null
 
-  // Role and status
   @column()
   declare role: 'admin' | 'user'
 
-  @column()
+  @column({ columnName: 'is_active' })
   declare isActive: boolean
 
-  // Timestamps
-  @column.dateTime({ autoCreate: true })
+  @column.dateTime({ autoCreate: true, columnName: 'created_at' })
   declare createdAt: DateTime
 
-  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  @column.dateTime({ autoCreate: true, autoUpdate: true, columnName: 'updated_at' })
   declare updatedAt: DateTime | null
 }

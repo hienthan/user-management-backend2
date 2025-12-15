@@ -10,7 +10,7 @@ export default defineConfig({
 
   // Allow requests from these origins
   // In production, replace with your actual frontend domain
-  origin: ['http://localhost:3000', 'http://localhost:3001'],
+  origin: ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:3002'],
 
   // Allowed HTTP methods
   methods: ['GET', 'HEAD', 'POST', 'PUT', 'DELETE', 'PATCH'],
