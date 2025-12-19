@@ -3,6 +3,15 @@ import router from '@adonisjs/core/services/router'
 const AuthController = () => import('#controllers/auth_controller')
 const UsersController = () => import('#controllers/users_controller')
 
+// ============================================
+// Health Check Endpoint
+// ============================================
+// This endpoint is used by Docker healthcheck to verify the app is running.
+// It's outside the /api prefix so it's easily accessible at /health
+router.get('/health', async ({ response }) => {
+  return response.ok({ status: 'healthy', timestamp: new Date().toISOString() })
+})
+
 router
   .group(() => {
     // Auth routes

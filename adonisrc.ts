@@ -17,4 +17,17 @@ export default defineConfig({
     () => import('#start/routes'),
     () => import('#start/kernel'),
   ],
+
+  tests: {
+    suites: [
+      {
+        name: 'unit',
+        files: ['tests/unit/**/*.spec.ts'],
+      },
+      {
+        name: 'functional',
+        files: ['tests/functional/**/*.spec.ts'],
+      },
+    ],
+  },
 })
