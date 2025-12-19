@@ -16,6 +16,7 @@ export default defineConfig({
     'http://localhost:3001',    // Alternative local port
     'http://localhost:3002',    // Alternative local port
     'http://localhost:13000',  // Docker: frontend container port 3000 → host port 13000
+    'http://127.0.0.1:13000',  // Alternative localhost format
   ],
 
   // Allowed HTTP methods
